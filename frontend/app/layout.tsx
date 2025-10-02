@@ -1,9 +1,9 @@
-import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Filecoin-Bim',
-  description: 'Decentralized storage and on-chain cloud services',
+  title: "SLIP - Shared Liability Insurance Protocol",
+  description: "Decentralized lending on Moca Chain",
 };
 
 export default function RootLayout({
