@@ -1,4 +1,4 @@
-# A decentralized lending protocol on Moca Chain built for the Proof of Build Buildathon
+# A decentralized lending protocol on Moca Chain built for the Proof of Build 
 
 **Shared Liability Insurance Protocol (SLIP)** is a DeFi primitive on **Moca Chain** that enables communities to stake **\$MOCA tokens** to co-sign high-risk loans or investments.
 
