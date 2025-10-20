@@ -18,8 +18,14 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": [
-        "./src/*"
+      "@components/*": [
+        "components/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
       ]
     },
     "plugins": [

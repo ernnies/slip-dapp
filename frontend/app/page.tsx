@@ -1,22 +1,22 @@
-import { WalletConnect } from "@components/WalletConnect";
-import { PoolCard } from "@components/PoolCard";
+import { ThemeToggle } from "@components/ui/ThemeToggle";
+import { Notification } from "@components/ui/Notification";
+import { Chart } from "@components/ui/Chart";
+import { useNotifications } from "@hooks/useNotifications";
+import { useTypedRoutes } from "@hooks/useTypedRoutes";
+import toast from 'react-hot-toast';
 
-export default async function Home() {
-  const pools = [
-    { id: "1", members: ["0x123", "0x456"], stakedAmount: "1000", active: true },
-  ];
+export default function Home() {
+  const { notifications, addNotification } = useNotifications();
+  const { goToPool } = useTypedRoutes();
+  const chartData = [10, 12, 15];  // Mock
 
   return (
-    <main className="min-h-screen bg-gray-100">
-      <WalletConnect />
-      <h1 className="text-3xl font-bold text-center text-moca py-6">
-        SLIP: Shared Liability Insurance Protocol
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-        {pools.map((pool) => (
-          <PoolCard key={pool.id} pool={pool} />
-        ))}
-      </div>
+    <main className="container mx-auto p-4">
+      <ThemeToggle />
+      <Notification message="Welcome!" />
+      <Chart data={chartData} />
+      <button onClick={() => goToPool('1')}>Go to Pool</button>
+      <button onClick={() => addNotification('Stake added!')}>Notify</button>
     </main>
   );
 }

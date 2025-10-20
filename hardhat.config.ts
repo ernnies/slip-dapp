@@ -7,7 +7,7 @@ const config: HardhatUserConfig = {
       url: process.env.MOCA_TESTNET_RPC || "https://testnet.mocachain.io",
       accounts: [process.env.PRIVATE_KEY || ""],
     },
-  },
+  },  
 };
 
 export default config;
