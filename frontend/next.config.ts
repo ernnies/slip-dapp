@@ -1,16 +1,31 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+import type { Configuration as WebpackConfig } from "webpack";
+
+const nextConfig: NextConfig = {
   typedRoutes: true,
   async headers() {
-    return [{ source: '/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=3600' }] }];
+    return [
+      {
+        source: "/(.*)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=3600" }],
+      },
+    ];
   },
-  webpack(config) {
-    config.resolve.modules = ['node_modules', 'components', 'utils', 'hooks', 'lib'];
+  webpack(config: WebpackConfig) {
+    config.resolve = config.resolve || {};
+    config.resolve.modules = [
+      ...(config.resolve.modules || []),
+      "node_modules",
+      "components",
+      "utils",
+      "hooks",
+      "lib",
+    ];
     return config;
   },
   images: {
-    domains: ['via.placeholder.com'],
+    domains: ["via.placeholder.com"],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
