@@ -1,4 +1,5 @@
-export async function POST(request: Request) {
-  const body = await request.json();
-  return NextResponse.json({ score: 'Low' });
+import { NextResponse } from "next/server";
+
+export async function POST() {
+  return NextResponse.json({ score: "Low" });
 }

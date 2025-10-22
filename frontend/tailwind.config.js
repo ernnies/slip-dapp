@@ -11,7 +11,10 @@ const config: Config = {
         moca: "#4A90E2",
         slip: "#2ECC71",
         teal: {
-          500: "#1ABC9C", // Define the 500 shade explicitly
+          500: "#1ABC9C",
+        },
+        gold: {
+          500: "#FFD700", // Define gold-500
         },
         gray: {
           900: "#1A1F2E",
@@ -19,11 +22,8 @@ const config: Config = {
           700: "#40485A",
         },
       },
-      fontFamily: {
-        sans: ["Inter", "sans-serif"],
-      },
-      screens: {
-        'xs': '475px',
+      boxShadow: {
+        gold: "0 0 15px 5px rgba(255, 215, 0, 0.5)", // Custom shadow for hover
       },
     },
   },

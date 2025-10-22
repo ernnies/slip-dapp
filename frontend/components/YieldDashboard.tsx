@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { SLIPSDK } from "@utils/slip-sdk";
 import { useWallet } from "@hooks/useWallet";
 import { formatMoca, formatDate } from "@utils/formatters";
@@ -7,20 +7,23 @@ import { formatMoca, formatDate } from "@utils/formatters";
 export function YieldDashboard({ poolId }: { poolId: string }) {
   const [yieldData, setYieldData] = useState<{ totalYield: string; lastUpdate: string } | null>(null);
   const { signer } = useWallet();
-  const sdk = new SLIPSDK(
-    process.env.NEXT_PUBLIC_MOCA_TESTNET_RPC!,
-    process.env.NEXT_PUBLIC_DCA_CONTRACT_ADDRESS!
-  );
+
+  const sdk = useMemo(() => {
+    return new SLIPSDK(
+      process.env.NEXT_PUBLIC_MOCA_TESTNET_RPC!,
+      process.env.NEXT_PUBLIC_DCA_CONTRACT_ADDRESS!
+    );
+  }, []);
 
   useEffect(() => {
     const fetchYield = async () => {
       if (signer) {
-        const data = await sdk.getYieldData(poolId, signer); // Mock method
+        const data = await sdk.getYieldData(poolId, signer);
         setYieldData(data);
       }
     };
     fetchYield();
-  }, [poolId, signer]);
+  }, [poolId, signer, sdk]);
 
   return (
     <div className="card mt-4">

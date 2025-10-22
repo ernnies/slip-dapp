@@ -1,11 +1,10 @@
-import { PortfolioCard } from "@/components/PortfolioCard";
-
-export default async function Overview() {
-  const data = await fetch('http://localhost:3000/api/apy', { cache: 'no-store' });  // Async API
-  const apyData = await data.json();
+export default function Overview() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <PortfolioCard apy={apyData.total} />
+    <div className="container mx-auto p-4">
+      <div className="card">
+        <h1 className="text-3xl font-playfair text-gold-500">Dashboard Overview</h1>
+        <p className="text-gray-300 mt-4">Welcome to your yield optimization dashboard.</p>
+      </div>
     </div>
   );
 }

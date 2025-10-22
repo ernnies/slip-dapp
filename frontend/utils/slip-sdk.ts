@@ -1,33 +1,24 @@
 import { ethers } from "ethers";
 
 export class SLIPSDK {
-  private provider: ethers.providers.JsonRpcProvider;
-  private contract: ethers.Contract;
-
   constructor(rpcUrl: string, contractAddress: string) {
-    this.provider = new ethers.providers.JsonRpcProvider(rpcUrl);
-    const abi = [
-      "function createPool(address[] memory _members, address _sessionKey)",
-      "function stake(uint256 _poolId, uint256 _amount)",
-      "function getPool(uint256 _poolId) view returns (address[] memory, uint256, address, bool)",
-    ];
-    this.contract = new ethers.Contract(contractAddress, abi, this.provider);
+    this.provider = new ethers.JsonRpcProvider(rpcUrl);
+    this.contractAddress = contractAddress;
   }
-
-  async createPool(members: string[], sessionKey: string, signer: ethers.Signer) {
-    const contractWithSigner = this.contract.connect(signer);
-    const tx = await contractWithSigner.createPool(members, sessionKey);
-    return tx.wait();
+  // Mock methods
+  async getYieldData(poolId: string, signer: ethers.JsonRpcSigner) {
+    return { totalYield: "100", lastUpdate: "1698777600" };
   }
-
-  async stake(poolId: string, amount: string, signer: ethers.Signer) {
-    const contractWithSigner = this.contract.connect(signer);
-    const tx = await contractWithSigner.stake(poolId, ethers.utils.parseUnits(amount, 18));
-    return tx.wait();
+  async getPool(poolId: string, signer: ethers.JsonRpcSigner) {
+    return { members: [], stakedAmount: "1000", active: true };
   }
-
-  async generateAIRProof(claim: { loanAmount: number; riskScore: string }) {
-    // Mock AIR Kit integration (replace with actual Moca SDK when available)
-    return { proof: `mock-proof-${claim.loanAmount}-${claim.riskScore}` };
+  async stake(poolId: string, amount: string, signer: ethers.JsonRpcSigner) {
+    // Mock transaction
+    return { hash: "0x123" };
   }
+  async generateAIRProof(data: any) {
+    return "proof";
+  }
+  private provider: ethers.JsonRpcProvider;
+  private contractAddress: string;
 }
